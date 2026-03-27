@@ -128,6 +128,8 @@ def main():
     parser.add_argument("-c", "--cookie", help="Value of the .ASPXAUTH cookie")
     parser.add_argument("-o", "--output", default="./kidplan_images", help="Output directory (default: ./kidplan_images)")
     parser.add_argument("--delay", type=float, default=0.2, help="Delay between requests in seconds (default: 0.2)")
+    parser.add_argument("--since", metavar="YYYY-MM-DD", help="Only download albums modified on or after this date")
+    parser.add_argument("--album", metavar="TITLE", help="Only download albums whose title contains this string (case-insensitive)")
     args = parser.parse_args()
 
     output_dir = Path(args.output)
@@ -142,6 +144,10 @@ def main():
         password = getpass.getpass("Password: ")
         if not login(session, username, password):
             sys.exit(1)
+
+    since_dt = None
+    if args.since:
+        since_dt = datetime.strptime(args.since, "%Y-%m-%d").replace(tzinfo=timezone.utc)
 
     print("\nFetching album list...")
     albums = get_all_albums(session)
@@ -165,6 +171,14 @@ def main():
             year, month = "Unknown", "Unknown"
 
         album_dir = output_dir / year / month / title
+
+        # Apply --since filter
+        if since_dt and ms_match and dt < since_dt:
+            continue
+
+        # Apply --album filter
+        if args.album and args.album.lower() not in title.lower():
+            continue
 
         print(f"[{title}] ({pic_count} pictures)", flush=True)
 
