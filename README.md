@@ -1,5 +1,7 @@
 # kidplan-fetcher
 
+[![CI](https://github.com/XtibiX/kidplan-fetcher/actions/workflows/ci.yml/badge.svg)](https://github.com/XtibiX/kidplan-fetcher/actions/workflows/ci.yml)
+
 Downloads all photos from [Kidplan](https://app.kidplan.com) kindergarten albums and organises them locally by year and month.
 
 ```
@@ -51,6 +53,8 @@ kidplan-fetcher --cookie "<value>" -o ./photos
 | `-c`, `--cookie` | `.ASPXAUTH` session cookie value | — |
 | `-o`, `--output` | Output directory | `./kidplan_images` |
 | `--delay` | Seconds between requests | `0.2` |
+| `--since` | Only download albums modified on or after `YYYY-MM-DD` | — |
+| `--album` | Only download albums whose title contains this string (case-insensitive) | — |
 
 ## How it works
 
