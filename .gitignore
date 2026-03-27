@@ -1,0 +1,16 @@
+# Downloaded images
+kidplan_images/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# Secrets
+*.cookie
+.cookies

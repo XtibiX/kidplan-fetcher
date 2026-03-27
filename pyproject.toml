@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kidplan-fetcher"
+version = "1.0.0"
+description = "Download all photos from Kidplan kindergarten albums, organised by year and month."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "puremagic>=1.28"]
+
+[project.scripts]
+kidplan-fetcher = "kidplan_fetcher.cli:main"
+
+[project.urls]
+Repository = "https://github.com/XtibiX/kidplan-fetcher"
