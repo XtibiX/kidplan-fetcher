@@ -135,6 +135,7 @@ def main():
     output_dir = Path(args.output)
     session = requests.Session()
     session.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+    session.headers["Referer"] = BASE_URL + "/"
 
     if args.cookie:
         session.cookies.set(".ASPXAUTH", args.cookie, domain="app.kidplan.com")

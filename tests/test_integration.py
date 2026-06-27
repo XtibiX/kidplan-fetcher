@@ -33,7 +33,8 @@ pytestmark = pytest.mark.skipif(
 @pytest.fixture(scope="module")
 def session():
     s = requests.Session()
-    s.headers["User-Agent"] = "Mozilla/5.0 (kidplan-fetcher-test)"
+    s.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"
+    s.headers["Referer"] = "https://app.kidplan.com/"
     assert login(s, USERNAME, PASSWORD), "Login failed — check credentials"
     return s
 
