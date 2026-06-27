@@ -19,9 +19,9 @@ BASE_URL = "https://app.kidplan.com"
 
 
 def login(session: requests.Session, username: str, password: str) -> bool:
-    resp = session.get(
+    resp = session.post(
         f"{BASE_URL}/Account/GetKinderGartenIds",
-        params={"username": username, "password": password},
+        data={"username": username, "password": password},
     )
     resp.raise_for_status()
     try:
